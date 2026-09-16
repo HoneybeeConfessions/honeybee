@@ -1,9 +1,9 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [react()],
-  base: '/honeybee/',
+  base: command === 'build' ? '/honeybee/' : '/',
   preview: {
     allowedHosts: true,
   },
@@ -11,4 +11,4 @@ export default defineConfig({
     allowedHosts: true,
     port: 5174,
   },
-})
+}))
