@@ -1,0 +1,88 @@
+-- Honeybee Phase 1 schema (run on a dedicated Supabase project, not Voices)
+-- Contact fields live on confessions for MVP; omit from public list selects in the client.
+
+create table if not exists confessions (
+  id uuid primary key default gen_random_uuid(),
+  number bigserial unique not null,
+  location_raw text not null,
+  location_norm text not null,
+  body text not null,
+  tags text[] not null default '{}',
+  author_key text,
+  hug_count int not null default 0,
+  flag_count int not null default 0,
+  status text not null default 'visible' check (status in ('visible', 'hidden')),
+  needs_help boolean not null default false,
+  email text,
+  whatsapp text,
+  account_details text,
+  created_at timestamptz not null default now()
+);
+
+create index if not exists confessions_status_created_idx
+  on confessions (status, created_at desc);
+
+create index if not exists confessions_author_key_idx
+  on confessions (author_key)
+  where author_key is not null;
+
+create table if not exists confession_hugs (
+  id uuid primary key default gen_random_uuid(),
+  confession_id uuid not null references confessions(id) on delete cascade,
+  device_id text not null,
+  created_at timestamptz not null default now(),
+  unique (confession_id, device_id)
+);
+
+create table if not exists confession_comments (
+  id uuid primary key default gen_random_uuid(),
+  confession_id uuid not null references confessions(id) on delete cascade,
+  body text not null,
+  device_id text not null,
+  flag_count int not null default 0,
+  status text not null default 'visible' check (status in ('visible', 'hidden')),
+  created_at timestamptz not null default now()
+);
+
+create index if not exists confession_comments_confession_idx
+  on confession_comments (confession_id, created_at);
+
+create table if not exists confession_updates (
+  id uuid primary key default gen_random_uuid(),
+  confession_id uuid not null references confessions(id) on delete cascade,
+  body text not null,
+  created_at timestamptz not null default now()
+);
+
+create table if not exists awareness_stats (
+  id uuid primary key default gen_random_uuid(),
+  date date not null,
+  metric text not null,
+  value numeric not null,
+  source_url text not null,
+  note text not null default '',
+  created_at timestamptz not null default now()
+);
+
+alter table confessions enable row level security;
+alter table confession_hugs enable row level security;
+alter table confession_comments enable row level security;
+alter table confession_updates enable row level security;
+alter table awareness_stats enable row level security;
+
+-- Open anon policies for Phase 1 MVP (tighten before public launch)
+create policy "confessions read" on confessions for select using (true);
+create policy "confessions insert" on confessions for insert with check (true);
+create policy "confessions update" on confessions for update using (true);
+
+create policy "hugs read" on confession_hugs for select using (true);
+create policy "hugs insert" on confession_hugs for insert with check (true);
+
+create policy "comments read" on confession_comments for select using (true);
+create policy "comments insert" on confession_comments for insert with check (true);
+create policy "comments update" on confession_comments for update using (true);
+
+create policy "updates read" on confession_updates for select using (true);
+create policy "updates insert" on confession_updates for insert with check (true);
+
+create policy "awareness read" on awareness_stats for select using (true);
