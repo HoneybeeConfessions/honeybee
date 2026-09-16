@@ -5,7 +5,7 @@ export const CREATOR_CONFESSION_ID = 'honeybee-creator-001'
 export const DEVELOPER_DONATION = {
   bank: 'Capitec',
   account: '1681108133',
-  email: 'thabisoxu8lu4@gmail.com',
+  email: 'thabisoxulu4@gmail.com',
   whatsapp: '27635488295',
   note: 'If Honeybee or The Voices helped you, a thank-you donation keeps the lights on. Optional. Never required.',
 }
@@ -30,7 +30,7 @@ I was raised in an environment where talking about what hurt was hard. So I didn
   flagCount: 0,
   status: 'visible',
   needsHelp: true,
-  email: 'thabisoxu8lu4@gmail.com',
+  email: 'thabisoxulu4@gmail.com',
   whatsapp: '27635488295',
   accountDetails: 'Capitec\n1681108133',
   bankType: 'Capitec',
