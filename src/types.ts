@@ -6,6 +6,9 @@ export type Screen =
   | 'understand'
   | 'insights'
   | 'about'
+  | 'callouts'
+  | 'calloutDetail'
+  | 'more'
 
 export type ConfessionTag =
   | 'grief'
@@ -24,6 +27,8 @@ export type LifeStage = 'young' | 'husband' | 'father' | 'provider' | 'elder' | 
 export type ConfessionStatus = 'visible' | 'hidden'
 
 export type ConfessionKind = 'confession' | 'comeback'
+
+export type WriteKind = ConfessionKind | 'callout'
 
 export interface Confession {
   id: string
@@ -49,6 +54,25 @@ export interface Confession {
 }
 
 export type ConfessionPublic = Omit<Confession, 'email' | 'whatsapp' | 'accountDetails'>
+
+export interface Callout {
+  id: string
+  number: number
+  body: string
+  locationRaw: string
+  locationNorm: string
+  authorKey: string | null
+  secondCount: number
+  flagCount: number
+  status: ConfessionStatus
+  createdAt: string
+}
+
+export interface CreateCalloutInput {
+  location: string
+  body: string
+  authorEmail?: string
+}
 
 export interface ConfessionComment {
   id: string
