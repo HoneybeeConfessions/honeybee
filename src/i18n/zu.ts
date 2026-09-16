@@ -244,7 +244,8 @@ export const zu: Dict = {
     empty: 'Akukho ukumemeza okwamanje. Memeza umkhuba wokuqala.',
     critical: 'Okukhuphukayo',
     criticalSub: 'Okusekelwe kakhulu — imikhuba igumbi elingeke liyishaye indiva.',
-    shotHint: 'Sika ifreyimu — ukusekela kungaphakathi kwe-Instagram.',
+    shotHint:
+      'Sika ifreyimu — ukumemeza okude kuhlala kufushane lapha ukuze i-Instagram ihlale ihle. Thepha Funda kabanzi kobuningi.',
     label: 'Ukumemeza',
     from: 'Ukusuka',
     stillNaming: 'Sisamemeza umkhuba.',
@@ -258,6 +259,8 @@ export const zu: Dict = {
     unavailable: 'Lokhu kumemeza akutholakali.',
     loading: 'Iyalayisha…',
     read: 'Vula →',
+    readMore: 'Funda kabanzi →',
+    readLess: 'Bonisa okuncane',
   },
   more: {
     title: 'Okuningi',

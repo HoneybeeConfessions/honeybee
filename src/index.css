@@ -2083,13 +2083,48 @@ a {
   margin: 0;
   flex: 1;
   min-height: 0;
-  overflow: auto;
+  overflow: hidden;
   font-family: var(--font-display);
   font-size: clamp(1.05rem, 3.6vw, 1.22rem);
   font-weight: 500;
   line-height: 1.45;
   letter-spacing: -0.015em;
   white-space: pre-wrap;
+}
+
+.callout-frame-body.is-clamped {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 8;
+  overflow: hidden;
+}
+
+.callout-expand {
+  max-width: 420px;
+  margin: 0.85rem auto 0;
+  width: 100%;
+}
+
+.callout-read-more {
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ember);
+  cursor: pointer;
+}
+
+.callout-full-body {
+  margin: 0.65rem 0 0;
+  padding: 0.85rem 0.95rem;
+  border-radius: 0.85rem;
+  border: 1px solid color-mix(in srgb, var(--ember) 28%, var(--line));
+  background: var(--panel-solid);
+  font-size: 0.98rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  color: var(--ink);
 }
 
 .callout-frame-foot {
@@ -2192,7 +2227,12 @@ a {
   }
 
   .callout-frame-body {
-    overflow: visible;
+    overflow: hidden;
+  }
+
+  .callout-shot-hint {
+    display: block;
+    font-size: 0.72rem;
   }
 
   .kind-toggle-3 {

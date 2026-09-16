@@ -4,6 +4,9 @@ import { useI18n } from '../i18n'
 import { addSecond, flagCallout, getCallout, hasSeconded } from '../lib/callouts'
 import type { Callout } from '../types'
 
+/** Keep share-frame text short enough for a clean Instagram crop. */
+const FRAME_PREVIEW_CHARS = 280
+
 export function CalloutDetail({
   id,
   onBack,
@@ -16,12 +19,14 @@ export function CalloutDetail({
   const [seconded, setSeconded] = useState(false)
   const [loading, setLoading] = useState(true)
   const [busy, setBusy] = useState(false)
+  const [expanded, setExpanded] = useState(false)
   const controls = useAnimation()
 
   useEffect(() => {
     let cancelled = false
     ;(async () => {
       setLoading(true)
+      setExpanded(false)
       const c = await getCallout(id)
       if (cancelled) return
       setCallout(c)
@@ -75,6 +80,10 @@ export function CalloutDetail({
   }
 
   const num = String(callout.number).padStart(3, '0')
+  const long = callout.body.trim().length > FRAME_PREVIEW_CHARS
+  const frameBody = long
+    ? `${callout.body.trim().slice(0, FRAME_PREVIEW_CHARS).replace(/\s+\S*$/, '').trim()}…`
+    : callout.body
 
   return (
     <div className="screen detail-screen callout-detail">
@@ -101,7 +110,7 @@ export function CalloutDetail({
 
           <div className="callout-frame-rule" aria-hidden />
 
-          <p className="callout-frame-body">{callout.body}</p>
+          <p className="callout-frame-body is-clamped">{frameBody}</p>
 
           <footer className="callout-frame-foot">
             <div className="callout-second-block">
@@ -127,6 +136,20 @@ export function CalloutDetail({
           </footer>
         </div>
       </article>
+
+      {long ? (
+        <div className="callout-expand">
+          <button
+            type="button"
+            className="callout-read-more"
+            aria-expanded={expanded}
+            onClick={() => setExpanded((v) => !v)}
+          >
+            {expanded ? t.callouts.readLess : t.callouts.readMore}
+          </button>
+          {expanded ? <p className="callout-full-body">{callout.body}</p> : null}
+        </div>
+      ) : null}
 
       <button type="button" className="back-link" style={{ marginTop: '1rem' }} onClick={() => void onFlag()}>
         {t.callouts.report}

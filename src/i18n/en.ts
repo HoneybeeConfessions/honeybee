@@ -261,6 +261,10 @@ export const en = {
     unavailable: 'This call out is not available.',
     loading: 'Loading…',
     read: 'Open →',
+    readMore: 'Read more →',
+    readLess: 'Show less',
+    shotHint:
+      'Crop to the frame — long call outs stay short here so Instagram stays clean. Tap Read more for the rest.',
   },
   more: {
     title: 'More',

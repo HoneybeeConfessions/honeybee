@@ -244,7 +244,8 @@ export const st: Dict = {
     empty: 'Ha ho ho bitsa hajoale. Bitsa tloaelo ea pele.',
     critical: 'E phahamang',
     criticalSub: 'E tšehetsoeng haholo — litloaelo tseo kamore e ke keng ea li hlokomoloha.',
-    shotHint: 'Kuta frame — litšehetso li ka hare bakeng sa Instagram.',
+    shotHint:
+      'Kuta frame — ho bitsa ho telele ho lula ho le khutšoane mona hore Instagram e lule e le ntle. Tobetsa Bala haholo bakeng sa tse ling.',
     label: 'Ho bitsa',
     from: 'Ho tsoa',
     stillNaming: 'Re ntse re bitsa tloaelo.',
@@ -258,6 +259,8 @@ export const st: Dict = {
     unavailable: 'Ho bitsa hona ha ho fumanehe.',
     loading: 'Ea jarisa…',
     read: 'Bula →',
+    readMore: 'Bala haholo →',
+    readLess: 'Bontša hanyane',
   },
   more: {
     title: 'Tse ling',
