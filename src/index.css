@@ -79,14 +79,14 @@ a {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px));
+  padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 1.5rem);
 }
 
 .screen {
   flex: 1;
   width: min(720px, 100%);
   margin: 0 auto;
-  padding: 1.25rem 1.1rem 2rem;
+  padding: 1.25rem 1.1rem 2.5rem;
 }
 
 .hero {
@@ -1624,7 +1624,8 @@ a {
 
 @media (max-width: 520px) {
   .loss-counter-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
   }
 }
 
@@ -1714,5 +1715,100 @@ a {
 
   .screen {
     padding-top: 1.5rem;
+  }
+}
+
+/* Phone: free the first screen — compact chrome, readable confession */
+@media (max-width: 640px) {
+  .crisis {
+    position: relative;
+    z-index: 20;
+    gap: 0.3rem;
+    padding: 0.4rem 0.75rem 0.45rem;
+    font-size: 0.72rem;
+  }
+
+  .crisis-top > span {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1 1 10rem;
+  }
+
+  .crisis-links {
+    gap: 0.35rem 0.65rem;
+    font-size: 0.7rem;
+  }
+
+  .loss-counter {
+    padding: 0.5rem 0.75rem 0.55rem;
+  }
+
+  .loss-tile {
+    padding: 0.45rem 0.55rem;
+    border-radius: 0.65rem;
+  }
+
+  .loss-label {
+    font-size: 0.58rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .loss-num {
+    font-size: clamp(1.15rem, 6.5vw, 1.45rem);
+  }
+
+  .loss-rate {
+    font-size: 0.58rem;
+    margin-top: 0.1rem;
+  }
+
+  .loss-note {
+    margin-top: 0.4rem;
+    font-size: 0.62rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .shot-hint {
+    display: none;
+  }
+
+  .share-frame {
+    max-width: none;
+  }
+
+  .share-frame-inner {
+    aspect-ratio: auto;
+    max-height: none;
+    min-height: 16rem;
+    padding: 0.9rem 0.95rem 0.85rem;
+  }
+
+  .share-body {
+    overflow: visible;
+    font-size: 0.98rem;
+    line-height: 1.5;
+  }
+
+  .detail-screen {
+    padding-bottom: 3.5rem;
+  }
+
+  .nav {
+    height: calc(3.75rem + env(safe-area-inset-bottom, 0px));
+    padding: 0.3rem 0.25rem calc(0.3rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .nav button {
+    font-size: 0.68rem;
+    padding: 0.45rem 0.15rem;
+  }
+
+  .app-shell {
+    padding-bottom: calc(3.75rem + env(safe-area-inset-bottom, 0px) + 1.75rem);
   }
 }
