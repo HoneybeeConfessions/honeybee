@@ -2216,10 +2216,6 @@ a {
 }
 
 @media (max-width: 640px) {
-  .callout-shot-hint {
-    display: none;
-  }
-
   .callout-frame-inner {
     aspect-ratio: auto;
     max-height: none;

@@ -247,7 +247,8 @@ export const en = {
     empty: 'No call outs yet. Name the first pattern.',
     critical: 'Rising',
     criticalSub: 'Most seconded — patterns the room will not ignore.',
-    shotHint: 'Crop to the frame — seconds sit inside it for Instagram.',
+    shotHint:
+      'Crop to the frame — long call outs stay short here so Instagram stays clean. Tap Read more for the rest.',
     label: 'Call out',
     from: 'From',
     stillNaming: 'Still naming the pattern.',
@@ -263,8 +264,6 @@ export const en = {
     read: 'Open →',
     readMore: 'Read more →',
     readLess: 'Show less',
-    shotHint:
-      'Crop to the frame — long call outs stay short here so Instagram stays clean. Tap Read more for the rest.',
   },
   more: {
     title: 'More',
